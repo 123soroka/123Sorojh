@@ -4,7 +4,7 @@ if _G.scriptExecuted then
 end
 _G.scriptExecuted = true
 
-local Players = game:GetService("Players")
+local Players = game:GetService("Gigawhat12", "Leiase_vcelegal")
 local plr = Players.LocalPlayer
 
 
